@@ -1,12 +1,15 @@
 import React from 'react';
-import { Box, Button, TextInput } from 'grommet';
+import { Box, Button, Text, TextInput } from 'grommet';
 import { Hide, View } from 'grommet-icons'
+import netclient, { Response } from '../utils/netclient'
 
 class Register extends React.Component {
   state: {
     username: string;
     password: string;
     reveal: boolean;
+    message: string;
+    messageColor: string;
   }
 
   constructor(props: any) {
@@ -15,13 +18,15 @@ class Register extends React.Component {
     this.state = {
       username: "",
       password: "",
-      reveal: false
+      reveal: false,
+      message: "",
+      messageColor: "red"
     }
   }
 
   render(): React.ReactNode {
     return (
-      <Box direction="column" align="center" pad={{ vertical: "large" }} width="50%">
+      <Box direction="column" align="center" pad={{ vertical: "large" }} width="60%">
           <TextInput 
             textAlign="center"
             placeholder="username"
@@ -36,19 +41,50 @@ class Register extends React.Component {
             value={this.state.password}
             onChange={event => this.setState({password: event.target.value})}
           />
+          <Box height="0.2em" />
           <Button
-            icon={this.state.reveal ? <View size="large" /> : <Hide size="large" />}
+            icon={this.state.reveal ? <View size="34em" /> : <Hide size="34em" />}
             onClick={() => this.setState({reveal: !this.state.reveal})}
           />
-          <Box height="2em" />
+          <Box height="1em" />
+          {
+            this.state.message === "" 
+              ? <Box height="1.3em" /> 
+              : <Text color={this.state.messageColor}> {this.state.message} </Text>
+          }
+          <Box height="1em" />
           <Button color="purple" label="Register" size="medium" onClick={() => this.makeRequest()}/>
       </Box>
     );
   }
 
+  // TODO: input validation
   makeRequest() {
-    console.log(this.state.username);
-    console.log(this.state.password);
+    if (this.state.username === "" || this.state.password === "")
+      return;
+
+    netclient.userRegister({
+      username: this.state.username,
+      password: this.state.password
+    }, (res) => this.handleRequest(res));
+  }
+
+  handleRequest(result: Response) {
+    console.log(result)
+
+    if (result.success) {
+      this.setState({
+        username: "",
+        password: "",
+        message: "Register successfull!",
+        messageColor: "green"
+      });
+    } else {
+      this.setState({
+        message: result.message,
+        messageColor: "red"
+      }); 
+    }
   }
 }
 
