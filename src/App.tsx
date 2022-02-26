@@ -1,8 +1,9 @@
 import React from 'react';
 import { Box, Grommet } from 'grommet';
 
-import theme from './theme'
-import Topbar from './Topbar'
+import theme from './utils/theme'
+import Topbar from './components/Topbar'
+import Register from './components/Register'
 
 type UserState = "guest" | {username: string, level: number}
 type AppScreen = "home" | "login" | "register"
@@ -46,17 +47,25 @@ class App extends React.Component {
     });
   }
 
+  setToken(token: string): void {
+    this.setState({
+      token: token,
+    });
+  }
+
   render(): React.ReactNode {
     const topbarHandlers = {
       onLogin: () => this.handleLoginButton(),
       onRegister: () => this.handleRegisterButton(),
       goHome: () => this.handleHomeButton(),
-    }
+    };
 
     return (
-      <Grommet theme={theme}>
-        <Topbar {...topbarHandlers} /> 
-        {this.renderPage()}
+      <Grommet full theme={theme}>
+        <Topbar userState={this.state.userState} {...topbarHandlers} /> 
+        <Box align="center">
+          {this.renderPage()}
+        </Box>
       </Grommet>
     );
   }
@@ -67,7 +76,7 @@ class App extends React.Component {
     } else if (this.state.screen === "login") {
       return <Box align="center"> LOGIN </Box>
     } else if (this.state.screen === "register") {
-      return <Box align="center"> REGISTER </Box>
+      return <Register />
     }
   }
 }

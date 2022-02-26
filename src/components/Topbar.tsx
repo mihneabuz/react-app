@@ -2,11 +2,13 @@ import React from 'react';
 import { Box, Button, Heading, Anchor } from 'grommet';
 import { FormNext } from 'grommet-icons'
 
+type UserState = "guest" | {username: string, level: number}
 type Handler = () => void
-type ButtonHandlers = {
-  onLogin: Handler,
+type TopbarProps = {
+  userState: UserState,
+  onLogin:    Handler,
   onRegister: Handler,
-  goHome: Handler,
+  goHome:     Handler,
 } 
 
 function Bar(props: any) {
@@ -17,41 +19,58 @@ function Bar(props: any) {
         justify="between"
         background="gray"
         pad={{ left: "medium", right: "medium", vertical: "small" }}
-        elevation="medium"
         style={{ zIndex: "1" }}
         {...props}
       />
   );
 }
 
-class Topbar extends React.Component<ButtonHandlers> {
+class Topbar extends React.Component<TopbarProps> {
   onLogin:    Handler;
   onRegister: Handler;
   goHome:     Handler;
 
-  constructor(props: ButtonHandlers) {
+  constructor(props: TopbarProps) {
       super(props);
-      this.onLogin = props.onLogin.bind(this);
+      this.onLogin    = props.onLogin.bind(this);
       this.onRegister = props.onRegister.bind(this);
-      this.goHome = props.goHome.bind(this);
+      this.goHome     = props.goHome.bind(this);
   }
 
   render(): React.ReactNode {
+   
+    let content: React.ReactNode;
+    if (this.props.userState === "guest") {
+      content = (
+        <Box direction="row">
+          <Button label=" Login " color="cyan" onClick={this.onLogin} />
+          <Box width="0.5em"/>
+          <Button label="Register" color="purple" onClick={this.onRegister}/>
+        </Box>
+      );
+    } else {
+      let user  = this.props.userState.username;
+      let level = this.props.userState.level;
+      content = (
+          <Box color="purple">
+            <Heading>
+              {user + " " + level}
+            </Heading>
+          </Box>
+      );
+    }
+
     return (
       <Bar> 
         <Anchor color="cyan">
           <Box direction="row" align="center">
             <FormNext color="purple" size="large"/>
             <Heading level="2" margin="none" color="cyan" onClick={this.goHome}>
-              FriedLiver
+              Title
             </Heading>
           </Box>
         </Anchor>
-        <div>
-          <Button label=" Login " color="cyan" onClick={this.onLogin} />
-          <a> </a>
-          <Button label="Register" color="purple" onClick={this.onRegister}/>
-        </div> 
+        {content} 
       </Bar>
     );
   }
