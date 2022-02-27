@@ -8,6 +8,7 @@ class Register extends React.Component {
     username: string;
     password: string;
     reveal: boolean;
+
     message: string;
     messageColor: string;
   }
@@ -19,6 +20,7 @@ class Register extends React.Component {
       username: "",
       password: "",
       reveal: false,
+
       message: "",
       messageColor: "red"
     }
@@ -63,10 +65,14 @@ class Register extends React.Component {
     if (this.state.username === "" || this.state.password === "")
       return;
 
-    netclient.userRegister({
+    const data = {
       username: this.state.username,
       password: this.state.password
-    }, (res) => this.handleRequest(res));
+    }
+
+    netclient.userRegister(data)
+      .then((res) => this.handleRequest(res))
+      .catch((err) => console.log(err));
   }
 
   handleRequest(result: Response) {
