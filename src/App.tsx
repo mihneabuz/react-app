@@ -4,6 +4,8 @@ import { Box, Grommet } from 'grommet';
 import theme from './utils/theme'
 import Topbar from './components/Topbar'
 import Register from './components/Register'
+import Login from './components/Login'
+import Home from './components/Home'
 
 type UserState = "guest" | {username: string, level: number}
 type AppScreen = "home" | "login" | "register"
@@ -72,9 +74,9 @@ class App extends React.Component {
 
   renderPage(): React.ReactNode {
     if (this.state.screen === "home") {
-      return <Box align="center"> HOME </Box>
+      return <Home />
     } else if (this.state.screen === "login") {
-      return <Box align="center"> LOGIN </Box>
+      return <Login />
     } else if (this.state.screen === "register") {
       return <Register />
     }
