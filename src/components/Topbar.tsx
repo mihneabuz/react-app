@@ -1,14 +1,13 @@
 import React from 'react';
 import { Box, Button, Heading, Anchor } from 'grommet';
 import { FormNext } from 'grommet-icons'
+import { Handler, UserState } from '../App'
 
-type UserState = "guest" | {username: string, level: number}
-type Handler = () => void
 type TopbarProps = {
   userState: UserState,
-  onLogin:    Handler,
-  onRegister: Handler,
-  goHome:     Handler,
+  onLogin:    Handler<{}>,
+  onRegister: Handler<{}>,
+  goHome:     Handler<{}>,
 } 
 
 function Bar(props: any) {
@@ -26,9 +25,9 @@ function Bar(props: any) {
 }
 
 class Topbar extends React.Component<TopbarProps> {
-  onLogin:    Handler;
-  onRegister: Handler;
-  goHome:     Handler;
+  onLogin:    Handler<{}>;
+  onRegister: Handler<{}>;
+  goHome:     Handler<{}>;
 
   constructor(props: TopbarProps) {
       super(props);

@@ -70,7 +70,7 @@ class Register extends React.Component {
       password: this.state.password
     }
 
-    netclient.userRegister(data)
+    netclient.registerUser(data)
       .then((res) => this.handleRequest(res))
       .catch((err) => console.log(err));
   }

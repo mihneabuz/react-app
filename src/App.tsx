@@ -7,8 +7,10 @@ import Register from './components/Register'
 import Login from './components/Login'
 import Home from './components/Home'
 
-type UserState = "guest" | {username: string, level: number}
-type AppScreen = "home" | "login" | "register"
+export type UserInfo = {username: string, level: number}
+export type UserState = "guest" | UserInfo
+export type AppScreen = "home" | "login" | "register"
+export type Handler<T> = (x: T) => void
 
 class App extends React.Component {
   state: {
