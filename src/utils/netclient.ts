@@ -16,7 +16,7 @@ const authHeaders = (token: string) => ({
 })
 
 const netclient = {
-  registerUser: async (data: {username: string, password: string}): Promise<Response> => {
+  registerUser: async (data: { email: string, username: string, password: string}): Promise<Response> => {
     const response = await fetch(apiRoute + "/user/register", {
       method: "POST",
       headers: jsonHeaders,

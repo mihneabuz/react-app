@@ -5,6 +5,7 @@ import netclient, { Response } from '../utils/netclient'
 
 class Register extends React.Component {
   state: {
+    email: string;
     username: string;
     password: string;
     reveal: boolean;
@@ -17,6 +18,7 @@ class Register extends React.Component {
     super(props);
 
     this.state = {
+      email: "",
       username: "",
       password: "",
       reveal: false,
@@ -29,6 +31,13 @@ class Register extends React.Component {
   render(): React.ReactNode {
     return (
       <Box direction="column" align="center" pad={{ vertical: "large" }} width="60%">
+          <TextInput 
+            textAlign="center"
+            placeholder="email"
+            value={this.state.email}
+            onChange={event => this.setState({email: event.target.value})}
+          />
+          <Box height="2em" />
           <TextInput 
             textAlign="center"
             placeholder="username"
@@ -66,6 +75,7 @@ class Register extends React.Component {
       return;
 
     const data = {
+      email: this.state.email,
       username: this.state.username,
       password: this.state.password
     }
