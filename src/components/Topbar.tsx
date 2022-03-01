@@ -17,6 +17,7 @@ function Bar(props: any) {
         align="center"
         justify="between"
         background="gray"
+        height="4em"
         pad={{ left: "medium", right: "medium", vertical: "small" }}
         style={{ zIndex: "1" }}
         {...props}
@@ -50,9 +51,17 @@ class Topbar extends React.Component<TopbarProps> {
       let user  = this.props.userState.username;
       let level = this.props.userState.level;
       content = (
-          <Box>
-            <Heading color="purple">
-              {user + " " + level}
+          <Box direction="row">
+            <Heading level="2" color="purple" size="small">
+              {user}
+            </Heading>
+            <Box width="1.2em"/>
+            <Heading level="2" color="cyan" size="small">
+              Level:
+            </Heading>
+            <Box width="0.4em"/>
+            <Heading level="2" color="purple" size="small">
+              {level}
             </Heading>
           </Box>
       );

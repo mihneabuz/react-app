@@ -26,7 +26,7 @@ class App extends React.Component {
     this.state = {
       userState: "guest" as const,
       screen: "home" as const,
-      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsZXZlbCI6MSwiaWQiOiI0NDVlNjY2MS04MmFhLTRmZTctYmE3My02NDI5MzNjZjExNzEiLCJleHAiOjE2NDYyNDcyMDksInVzZXJuYW1lIjoiYXJjaCJ9.DQVHN2ZKqcAyjMIpixjuaYF9k5sODuq1fBTkbkQMGVw",
+      token: ""
     }
   }
 
@@ -49,12 +49,6 @@ class App extends React.Component {
   handleHomeButton(): void {
     this.setState({
       screen: "home",
-    });
-  }
-
-  setToken(token: string): void {
-    this.setState({
-      token: token,
     });
   }
 
@@ -86,7 +80,8 @@ class App extends React.Component {
     if (this.state.screen === "home") {
       return <Home />
     } else if (this.state.screen === "login") {
-      return <Login />
+      const tokenHandler = { setToken: (s: string) => this.setState({ token: s })}
+      return <Login {...tokenHandler}/>
     } else if (this.state.screen === "register") {
       return <Register />
     }
