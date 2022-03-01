@@ -4,7 +4,7 @@ import { FormNext } from 'grommet-icons'
 import { Handler, UserState } from '../App'
 
 type TopbarProps = {
-  userState: UserState,
+  userState:  UserState,
   onLogin:    Handler<{}>,
   onRegister: Handler<{}>,
   goHome:     Handler<{}>,
@@ -37,7 +37,6 @@ class Topbar extends React.Component<TopbarProps> {
   }
 
   render(): React.ReactNode {
-   
     let content: React.ReactNode;
     if (this.props.userState === "guest") {
       content = (
@@ -51,8 +50,8 @@ class Topbar extends React.Component<TopbarProps> {
       let user  = this.props.userState.username;
       let level = this.props.userState.level;
       content = (
-          <Box color="purple">
-            <Heading>
+          <Box>
+            <Heading color="purple">
               {user + " " + level}
             </Heading>
           </Box>

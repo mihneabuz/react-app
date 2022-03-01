@@ -6,6 +6,7 @@ import Topbar from './components/Topbar'
 import Register from './components/Register'
 import Login from './components/Login'
 import Home from './components/Home'
+import netclient from './utils/netclient';
 
 export type UserInfo = {username: string, level: number}
 export type UserState = "guest" | UserInfo
@@ -25,7 +26,7 @@ class App extends React.Component {
     this.state = {
       userState: "guest" as const,
       screen: "home" as const,
-      token: "",
+      token: "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJsZXZlbCI6MSwiaWQiOiI0NDVlNjY2MS04MmFhLTRmZTctYmE3My02NDI5MzNjZjExNzEiLCJleHAiOjE2NDYyNDcyMDksInVzZXJuYW1lIjoiYXJjaCJ9.DQVHN2ZKqcAyjMIpixjuaYF9k5sODuq1fBTkbkQMGVw",
     }
   }
 
@@ -64,6 +65,13 @@ class App extends React.Component {
       goHome: () => this.handleHomeButton(),
     };
 
+    if (this.state.userState === "guest" && this.state.token !== "") {
+      this.getUserInfo().catch(() => {
+        console.log("BAD TOKEN!");
+        this.setState({token: ""});
+      });
+    }
+
     return (
       <Grommet full theme={theme}>
         <Topbar userState={this.state.userState} {...topbarHandlers} /> 
@@ -82,6 +90,13 @@ class App extends React.Component {
     } else if (this.state.screen === "register") {
       return <Register />
     }
+  }
+
+  async getUserInfo(): Promise<void> {
+    const user = await netclient.userInfo(this.state.token);
+    this.setState({
+      userState: user
+    })
   }
 }
 

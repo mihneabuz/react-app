@@ -35,15 +35,16 @@ const netclient = {
   },
 
   userInfo: async (token: string): Promise<UserInfo> => {
-    const response = await fetch(apiRoute + "/user/login", {
-      method: "POST",
+    console.log(authHeaders(token))
+    const response = await fetch(apiRoute + "/user/info", {
+      method: "GET",
       headers: authHeaders(token),
     });
     return response.json();
   },
 
   updateUsername: async (data: {newUsername: string}, token: string): Promise<Response> => {
-    const response = await fetch(apiRoute + "/user/login", {
+    const response = await fetch(apiRoute + "/user/updateUsername", {
       method: "POST",
       headers: authHeaders(token),
       body: JSON.stringify(data)
