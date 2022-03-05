@@ -4,7 +4,7 @@ import { Box, Button, Text, TextInput } from "grommet"
 import netclient, { LoginResponse } from "../utils/netclient"
 import { Handler } from "../App"
 
-class Login extends React.Component {
+class Login extends React.Component<{ setToken: Handler<string> }> {
   setToken: Handler<string>
   state: {
     username: string;
@@ -14,7 +14,7 @@ class Login extends React.Component {
     messageColor: string;
   }
 
-  constructor(props: { setToken: Handler<string> }) {
+  constructor(props: any) {
     super(props);
 
     this.state = {

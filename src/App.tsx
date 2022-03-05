@@ -80,8 +80,7 @@ class App extends React.Component {
     if (this.state.screen === "home") {
       return <Home />
     } else if (this.state.screen === "login") {
-      const tokenHandler = { setToken: (s: string) => this.setState({ token: s })}
-      return <Login {...tokenHandler}/>
+      return <Login setToken={(s: string) => this.setState({ token: s })}/>
     } else if (this.state.screen === "register") {
       return <Register />
     }
