@@ -1,11 +1,17 @@
 import React from "react"
-import { Box } from "grommet"
+import { Box, Button } from "grommet"
+import { Handler } from '../App'
 
-class Home extends React.Component {
+class Home extends React.Component<{goBrowser: Handler<{}>}> {
+  constructor(props: { goBrowser: Handler<{}> }) {
+    super(props);
+  }
+
   render(): React.ReactNode {
     return (
-      <Box>
+      <Box direction="column">
         HOME
+        <Button label="Start Browsing" alignSelf="center" color="cyan" onClick={this.props.goBrowser}/>
       </Box>
     )
   }

@@ -59,7 +59,7 @@ class Topbar extends React.Component<TopbarProps> {
               {user}
             </Heading>
             <Box width="1.2em"/>
-            <Button label="Sign out" color="purple" onClick={this.clearToken}/>
+            <Button label="Sign out" alignSelf="center" color="cyan" onClick={this.clearToken}/>
 
             {/*
             <Heading level="2" color="cyan" size="small">

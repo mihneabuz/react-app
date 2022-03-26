@@ -3,6 +3,7 @@ const theme = {
     colors: {
       white:  '#babdcf',
       dark:   '#232739',
+      darker: '#202334',
       gray:   '#424446',
       green:  '#78df69',
       purple: '#c678dd',
