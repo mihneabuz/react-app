@@ -57,6 +57,7 @@ class App extends React.Component {
       onLogin: () => this.handleLoginButton(),
       onRegister: () => this.handleRegisterButton(),
       goHome: () => this.handleHomeButton(),
+      clearToken: () => this.setState({ token: "", screen: "home" }),
     };
 
     if (this.state.userState === "guest" && this.state.token !== "") {

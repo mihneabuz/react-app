@@ -8,6 +8,7 @@ type TopbarProps = {
   onLogin:    Handler<{}>,
   onRegister: Handler<{}>,
   goHome:     Handler<{}>,
+  clearToken: Handler<{}>
 } 
 
 function Bar(props: any) {
@@ -29,12 +30,14 @@ class Topbar extends React.Component<TopbarProps> {
   onLogin:    Handler<{}>;
   onRegister: Handler<{}>;
   goHome:     Handler<{}>;
+  clearToken: Handler<{}>
 
   constructor(props: TopbarProps) {
       super(props);
       this.onLogin    = props.onLogin.bind(this);
       this.onRegister = props.onRegister.bind(this);
       this.goHome     = props.goHome.bind(this);
+      this.clearToken = props.clearToken.bind(this);
   }
 
   render(): React.ReactNode {
@@ -49,13 +52,16 @@ class Topbar extends React.Component<TopbarProps> {
       );
     } else {
       let user  = this.props.userState.username;
-      let level = this.props.userState.level;
+      // let level = this.props.userState.level;
       content = (
           <Box direction="row">
             <Heading level="2" color="purple" size="small">
               {user}
             </Heading>
             <Box width="1.2em"/>
+            <Button label="Sign out" color="purple" onClick={this.clearToken}/>
+
+            {/*
             <Heading level="2" color="cyan" size="small">
               Level:
             </Heading>
@@ -63,6 +69,7 @@ class Topbar extends React.Component<TopbarProps> {
             <Heading level="2" color="purple" size="small">
               {level}
             </Heading>
+            */}
           </Box>
       );
     }
