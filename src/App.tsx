@@ -73,7 +73,7 @@ class App extends React.Component {
 
     return (
       <Grommet full theme={theme}>
-        <Topbar userState={this.state.userState} {...topbarHandlers} /> 
+        <Topbar userState={this.state.userState} token={this.state.token} {...topbarHandlers} /> 
         <Box align="center">
           {this.renderPage()}
         </Box>

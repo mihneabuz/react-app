@@ -300,6 +300,8 @@ class Browser extends React.Component<{ token: string }, BrowserState> {
         if (res.success) {
           this.setState({
             toUpload: [],
+            files: [],
+            gotFiles: false,
             message: "Upload successfull",
             messageColor: "green"
           });
@@ -344,14 +346,18 @@ class Browser extends React.Component<{ token: string }, BrowserState> {
           <Box height="1em" />
           {
             this.state.agents.map((agent: Agent) => 
-              <Button color="purple" label={agent.name} key={agent.id} onClick={
-                () => this.setState({ 
-                  currentAgent: agent,
-                  path: "",
-                  gotFiles: false,
-                  files: [],
-                })
-              }/>)
+              <Box width="100%">
+                <Button color="purple" label={agent.name} key={agent.id} fill="horizontal" onClick={
+                  () => this.setState({ 
+                    currentAgent: agent,
+                    path: "",
+                    gotFiles: false,
+                    files: [],
+                  })
+                }/>
+                <Box height="0.5em"/>
+              </Box>
+              )
           }
         </Box>
       );

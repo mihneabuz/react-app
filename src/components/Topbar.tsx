@@ -2,13 +2,15 @@ import React from 'react';
 import { Box, Button, Heading, Anchor } from 'grommet';
 import { FormNext } from 'grommet-icons'
 import { Handler, UserState } from '../App'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 type TopbarProps = {
   userState:  UserState,
   onLogin:    Handler<{}>,
   onRegister: Handler<{}>,
   goHome:     Handler<{}>,
-  clearToken: Handler<{}>
+  clearToken: Handler<{}>,
+  token: string
 } 
 
 function Bar(props: any) {
@@ -52,24 +54,17 @@ class Topbar extends React.Component<TopbarProps> {
       );
     } else {
       let user  = this.props.userState.username;
-      // let level = this.props.userState.level;
       content = (
           <Box direction="row">
             <Heading level="2" color="purple" size="small">
               {user}
             </Heading>
-            <Box width="1.2em"/>
-            <Button label="Sign out" alignSelf="center" color="cyan" onClick={this.clearToken}/>
-
-            {/*
-            <Heading level="2" color="cyan" size="small">
-              Level:
-            </Heading>
-            <Box width="0.4em"/>
-            <Heading level="2" color="purple" size="small">
-              {level}
-            </Heading>
-            */}
+            <Box width="1em"/>
+            <CopyToClipboard text={this.props.token} >
+              <Button label="token" alignSelf="center" color="cyan"/>
+            </CopyToClipboard>
+            <Box width="1em"/>
+            <Button label="sign out" alignSelf="center" color="cyan" onClick={this.clearToken}/>
           </Box>
       );
     }
