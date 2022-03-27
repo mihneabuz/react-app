@@ -64,7 +64,7 @@ class Topbar extends React.Component<TopbarProps> {
               <Button label="token" alignSelf="center" color="cyan"/>
             </CopyToClipboard>
             <Box width="1em"/>
-            <Button label="sign out" alignSelf="center" color="cyan" onClick={this.clearToken}/>
+            <Button label="sign out" alignSelf="center" color="purple" onClick={this.clearToken}/>
           </Box>
       );
     }

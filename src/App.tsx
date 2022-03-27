@@ -66,7 +66,6 @@ class App extends React.Component {
 
     if (this.state.userState === "guest" && this.state.token !== "") {
       this.getUserInfo().catch(() => {
-        console.log("BAD TOKEN!");
         this.setState({ token: "" });
       });
     }
