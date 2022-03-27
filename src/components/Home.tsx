@@ -1,6 +1,6 @@
-import React from "react"
-import { Box, Button } from "grommet"
-import { Handler } from '../App'
+import React from "react";
+import { Box, Button, Image } from "grommet";
+import { Handler } from '../App';
 
 class Home extends React.Component<{goBrowser: Handler<{}>}> {
   constructor(props: { goBrowser: Handler<{}> }) {
@@ -10,8 +10,10 @@ class Home extends React.Component<{goBrowser: Handler<{}>}> {
   render(): React.ReactNode {
     return (
       <Box direction="column">
-        HOME
-        <Button label="Start Browsing" alignSelf="center" color="cyan" onClick={this.props.goBrowser}/>
+        <Box height="4em" />
+        <Image src={require("../icon.png")}/>
+        <Box height="4em" />
+        <Button label="Start Browsing" alignSelf="center" color="cyan" size="large" onClick={this.props.goBrowser}/>
       </Box>
     )
   }
