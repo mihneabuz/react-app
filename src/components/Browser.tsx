@@ -183,14 +183,18 @@ class Browser extends React.Component<{ token: string }, BrowserState> {
       const sortBy = this.state.bycpu ? "cpu" : this.state.bymem ? "mem" : "";
       const res = await netclient.getProcs(this.props.token, this.state.currentAgent.id, sortBy);
 
-      console.log(res);
-
       if (res.success) {
         this.setState({ 
           procs: JSON.parse(res.runningProcs),
+          bycpu: false,
+          bymem: false,
+          message: "",
         });
       } else {
         this.setState({
+          procs: [],
+          bycpu: false,
+          bymem: false,
           message: "Cannot retreive processes",
           messageColor: "red"
         })

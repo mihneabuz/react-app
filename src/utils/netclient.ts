@@ -1,6 +1,6 @@
 import { UserInfo, Agent } from "../App"
 
-const apiRoute = "http://10.81.134.247:8080"
+const apiRoute = "http://localhost:8080"
 
 export type Response = { success: boolean, message: string }
 export type LoginResponse = { success: boolean, message: string, jwtToken: string }

@@ -3,10 +3,6 @@ import { Box, Button, Image } from "grommet";
 import { Handler } from '../App';
 
 class Home extends React.Component<{goBrowser: Handler<{}>}> {
-  constructor(props: { goBrowser: Handler<{}> }) {
-    super(props);
-  }
-
   render(): React.ReactNode {
     return (
       <Box direction="column">
