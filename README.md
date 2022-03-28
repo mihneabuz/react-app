@@ -1,4 +1,5 @@
-# React app
+# HackItAll 2022
+React app made for a distributed network file manager which helped us win 2nd place at HackItAll 2022
 
 ## Available Scripts
 
