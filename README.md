@@ -1,6 +1,8 @@
 # HackItAll 2022
 React app made for a distributed network file manager which helped us win 2nd place at HackItAll 2022
 
+Talks with backend at: https://github.com/mihneabuz/spring-app/tree/hackitall
+
 ## Available Scripts
 
 In the project directory, you can run:
